@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 
+let
+  unstableSmall = import (fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable-small.tar.gz";
+  }) { config = { allowUnfree = true; }; };
+unstable = import (fetchTarball {
+  url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+}) { config = { allowUnfree = true; }; };
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -56,6 +64,12 @@
     browsing = true; # para detectar impresoras en red (Avahi)
   };
 
+  services.ollama = {
+    enable = true;
+    package = unstableSmall.ollama;
+    loadModels = [ "gpt-oss:20b"];
+  };
+
   # Enable sound
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -67,6 +81,7 @@
   };
 
   users.users.unknown = {
+   shell = pkgs.nushell;
     isNormalUser = true;
     description = "unknown";
     extraGroups = [
@@ -77,21 +92,25 @@
       "docker"
     ];
     packages = with pkgs; [
-      helix
+      asciinema
+      oh-my-posh
+      unstable.helix
       docker
       docker-compose
-      obsidian
+      unstable.obsidian
       openjdk17
       openjdk21
-      spotify
+      unstable.spotify
       git
-      vscode
-      postman
-      discord
-      telegram-desktop
-      code-cursor
+      unstable.discord
+      unstable.telegram-desktop
+      unstableSmall.code-cursor
       prismlauncher
       cloudflare-warp
+      sqlitebrowser
+      tree
+      unstable.vscode
+      unstable.postman
     ];
   };
 
@@ -109,7 +128,7 @@
   hardware.graphics.enable32Bit = true;
 
   environment.systemPackages = with pkgs; [
-    tree
+    unstableSmall.ollama
   ];
 
   #networking.firewall.allowedTCPPorts = [ 3000 ];
