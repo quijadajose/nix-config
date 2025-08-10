@@ -14,18 +14,30 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/bfdc3a2b-a308-4732-aedf-def17840c601";
+    { device = "/dev/disk/by-uuid/ef54a187-a071-468c-a3b3-174870ba6802";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7EF7-940C";
+    { device = "/dev/disk/by-uuid/CC0E-EF10";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/d7880397-f7da-41bc-9cf9-477819e3b213"; }
+    ];
 
+  #swap
+  boot.initrd.systemd.enable = true;
+  services.fstrim.enable = true;
+  powerManagement.enable = true;
+
+  # Solo si querés afinar el swap:
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
+  
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
