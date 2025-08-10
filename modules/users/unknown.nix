@@ -1,14 +1,17 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   users.users.unknown = {
     shell = pkgs.nushell;
     isNormalUser = true;
     description = "unknown";
-    extraGroups = [ "lp" "lpadmin" "networkmanager" "wheel" "docker" ];
+    extraGroups =
+      [ "lp" "lpadmin" "networkmanager" "wheel" "docker" "vboxusers" ];
     packages = with pkgs; [
       asciinema
       oh-my-posh
       unstable.helix
+      pkgs.nixpkgs-fmt
+      nixfmt
+      direnv
       docker
       docker-compose
       unstable.obsidian
