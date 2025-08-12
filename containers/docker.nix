@@ -2,7 +2,8 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless.enable = true;
 
-  # asegúrate de que podman no tenga dockerCompat
+  # Asegura que podman no esté activo cuando usas docker
   virtualisation.podman.enable = false;
 }
+
 
