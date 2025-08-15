@@ -4,7 +4,7 @@
     isNormalUser = true;
     description = "unknown";
     extraGroups =
-      [ "lp" "lpadmin" "networkmanager" "wheel" "docker" "vboxusers" ];
+      [ "lp" "lpadmin" "networkmanager" "wheel" "docker" "vboxusers" "audio" ];
     packages = with pkgs; [
       asciinema
       oh-my-posh
