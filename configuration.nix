@@ -12,6 +12,7 @@
     ./modules/hardware-graphics.nix
     ./modules/packages.nix
     ./modules/ollama.nix
+    ./modules/freecad.nix
     ./modules/virtualbox.nix
     ./modules/virtualbox-compat.nix
     ./modules/users/unknown.nix
