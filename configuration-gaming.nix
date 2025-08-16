@@ -12,6 +12,7 @@
     ./modules/packages-gaming.nix
     ./modules/users/gaming.nix
     ./modules/flatpak.nix
+    ./modules/security.nix
   ];
 
   system.nixos.label = "Gaming";
