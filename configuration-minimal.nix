@@ -9,6 +9,7 @@
     # Elige uno Docker o Podman (como comparten el mismo servicio no se pueden usar ambos):
     # ./containers/docker.nix
     ./containers/podman.nix
+    ./modules/security.nix
   ];
   system.nixos.label = "Minimal";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

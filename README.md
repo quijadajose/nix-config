@@ -31,6 +31,32 @@ Este repositorio contiene tres configuraciones diferentes de NixOS para diferent
   - Flatpak para aplicaciones de gaming
   - Usuario dedicado para gaming
 
+## 🔐 Sistema de Permisos y Usuarios
+
+### 👥 **Usuarios del Sistema:**
+
+#### **👤 Usuario `unknown`**
+- **Grupo:** `wheel` (acceso completo a sudo)
+- **Puede:** Todo, incluyendo editar archivos de configuración
+- **Uso:** Administrador principal del sistema
+
+#### **👤 Usuario `minimal`**
+- **Grupo:** `wheel` (acceso completo a sudo)
+- **Puede:** Todo, incluyendo editar archivos de configuración
+- **Uso:** Usuario para pruebas y desarrollo
+
+#### **🎮 Usuario `gaming`**
+- **Grupo:** NO tiene `wheel`
+- **Puede:** Solo cambiar configuraciones de NixOS (sin contraseña)
+- **NO puede:** Editar archivos de configuración
+- **Uso:** Usuario para gaming con aislamiento
+
+### 🔒 **Configuración de Seguridad:**
+- **AppArmor** habilitado para aislamiento
+- **Firewall** con puertos específicos para gaming
+- **Permisos específicos** para usuario gaming
+- **Auditoría completa** de cambios
+
 ## 🔄 Cómo Cambiar Entre Configuraciones
 
 ### Método 1: Script Automatizado (Recomendado)
@@ -47,6 +73,8 @@ sudo ./switch-config.sh minimal
 # Cambiar a configuración de gaming
 sudo ./switch-config.sh gaming
 ```
+
+**Nota:** Los usuarios `unknown` y `minimal` necesitan contraseña, mientras que `gaming` puede cambiar sin contraseña.
 
 ### Método 2: Comandos Manuales
 
@@ -83,6 +111,7 @@ sudo nixos-rebuild switch -p gaming -I nixos-config=/etc/nixos/configuration-gam
 │   ├── packages-gaming.nix
 │   ├── programs.nix
 │   ├── programs-gaming.nix
+│   ├── security.nix         # Configuración de seguridad centralizada
 │   └── users/
 │       ├── gaming.nix
 │       ├── minimal.nix
@@ -131,3 +160,5 @@ Para personalizar cada configuración:
 ---
 
 **💡 Tip:** Usa `nixos-rebuild dry-activate` antes de `switch` para ver qué cambios se aplicarán sin hacerlos efectivos.
+
+**🔒 Seguridad:** El usuario `gaming` está diseñado para aislamiento completo, permitiendo cambios de configuración sin comprometer la integridad del sistema.

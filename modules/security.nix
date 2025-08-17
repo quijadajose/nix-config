@@ -50,7 +50,18 @@
   programs.sudo = {
     enable = true;
     wheelNeedsPassword = true;
-    extraRules = [ ];
+    extraRules = [
+      # Usuario gaming: Solo puede cambiar configuraciones de NixOS
+      {
+        users = [ "gaming" ];
+        commands = [
+          {
+            command = "nixos-rebuild switch -p * -I nixos-config=/etc/nixos/configuration*.nix";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 
   services.journald.extraConfig = ''
