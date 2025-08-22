@@ -15,6 +15,8 @@
     ./modules/freecad.nix
     ./modules/virtualbox.nix
     ./modules/virtualbox-compat.nix
+    ./modules/kvm.nix
+    ./modules/winapps.nix
     ./modules/users/unknown.nix
     ./containers/docker.nix
   ];
@@ -22,5 +24,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
+
 }
 

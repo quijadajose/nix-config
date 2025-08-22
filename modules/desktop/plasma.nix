@@ -8,4 +8,3 @@
   };
   xdg.portal.enable = true;
 }
-
