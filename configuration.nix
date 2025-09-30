@@ -5,6 +5,7 @@
     ./modules/boot.nix
     ./modules/networking.nix
     ./modules/locale.nix
+    ./modules/japanese.nix
     ./modules/printing.nix
     ./modules/audio.nix
     ./modules/desktop/plasma.nix
@@ -17,6 +18,8 @@
     ./modules/virtualbox-compat.nix
     ./modules/users/unknown.nix
     ./containers/docker.nix
+    ./modules/waydroid.nix
+    ./modules/bluetooth.nix
   ];
   system.nixos.label = "Full";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

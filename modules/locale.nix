@@ -2,6 +2,7 @@
   time.timeZone = "America/Santiago";
 
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "es_CL.UTF-8/UTF-8" "ja_JP.UTF-8/UTF-8" ];
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "es_CL.UTF-8";
     LC_IDENTIFICATION = "es_CL.UTF-8";

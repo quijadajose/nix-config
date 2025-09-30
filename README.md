@@ -57,6 +57,41 @@ Este repositorio contiene tres configuraciones diferentes de NixOS para diferent
 - **Permisos específicos** para usuario gaming
 - **Auditoría completa** de cambios
 
+## 🇯🇵 Soporte de Japonés (IME)
+
+Esta configuración incluye **soporte completo para escribir en japonés** con Fcitx5 + Mozc (Google Japanese Input).
+
+### 🎯 **Sistema Instalado:**
+- **Fcitx5** - Framework de métodos de entrada (optimizado para KDE Plasma 6 + Wayland)
+- **Mozc** - Motor IME japonés (Google Japanese Input)
+- **Fuentes japonesas** - Noto Sans/Serif CJK JP, IPA Fonts, Kochi Substitute
+- **Locale japonés** - ja_JP.UTF-8 habilitado
+
+### ⌨️ **Atajos de Teclado Útiles:**
+
+#### Activación
+- **Ctrl + Space** - Activar/desactivar el modo japonés
+
+#### Conversión
+- **Enter** - Confirmar la conversión
+- **Escape** - Cancelar y volver al romaji
+- **Space** - Siguiente candidato de conversión
+- **Shift + Space** - Candidato anterior
+
+#### Transformación de Texto
+- **F6** - Convertir a hiragana (ひらがな)
+- **F7** - Convertir a katakana (カタカナ)
+- **F8** - Convertir a medio-ancho
+- **F9** - Convertir a ancho completo romaji
+- **F10** - Convertir a medio-ancho romaji
+
+### 📝 **Cómo Usar:**
+
+1. Presiona **Ctrl + Space** para activar el modo japonés
+2. Escribe en **romaji**: `konnichiwa`
+3. Se convertirá automáticamente a: `こんにちは`
+4. Presiona **Enter** para confirmar
+
 ## 🔄 Cómo Cambiar Entre Configuraciones
 
 ### Método 1: Script Automatizado (Recomendado)

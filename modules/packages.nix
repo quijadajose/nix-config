@@ -4,5 +4,7 @@
     qjackctl
     pipewire
     pkgs.pipewire.jack
+    easyeffects
+    brave
    ];
 }

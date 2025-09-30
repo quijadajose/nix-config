@@ -2,44 +2,10 @@
   security = {
     apparmor.enable = true;
     auditd.enable = true;
-
-    apparmor.policies = {
-      "gaming" = {
-        enable = true;
-        profile = ''
-          #include <tunables/global>
-
-          profile gaming flags=(attach_disconnected) {
-            #include <abstractions/base>
-            #include <abstractions/audio>
-            #include <abstractions/games>
-
-            /home/gaming/** rw,
-            /tmp/** rw,
-            /var/tmp/** rw,
-
-            # solo lectura en sistema
-            /etc/** r,
-            /usr/lib/** r,
-            /usr/share/** r,
-
-            # acceso necesario para juegos
-            /dev/dri/* rw,
-            /dev/snd/* rw,
-
-            # binarios específicos
-            /bin/bash rix,
-            /usr/bin/lutris rix,
-            /usr/bin/wine* rix,
-            /usr/bin/prismlauncher rix,
-            /usr/bin/discord rix,
-            /usr/bin/telegram-desktop rix,
-            /usr/bin/firefox rix,
-          }
-        '';
-      };
-    };
   };
+
+  # AppArmor habilitado para seguridad básica
+  # Las políticas personalizadas se pueden configurar manualmente después
 
   networking.firewall = {
     enable = true;
@@ -47,21 +13,9 @@
     allowedUDPPorts = [ 25565 25575 ];
   };
 
-  programs.sudo = {
+  security.sudo = {
     enable = true;
     wheelNeedsPassword = true;
-    extraRules = [
-      # Usuario gaming: Solo puede cambiar configuraciones de NixOS
-      {
-        users = [ "gaming" ];
-        commands = [
-          {
-            command = "nixos-rebuild switch -p * -I nixos-config=/etc/nixos/configuration*.nix";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
   };
 
   services.journald.extraConfig = ''
@@ -82,8 +36,8 @@
   # Configuración de seguridad para el servicio gaming
   systemd.user.services."gaming@" = {
     serviceConfig = {
-      CPUQuota = "200%";
-      MemoryMax = "8G";
+      CPUQuota = "800%";
+      MemoryMax = "32G";
       LimitNPROC = 1000;
       LimitNOFILE = 4096;
 
