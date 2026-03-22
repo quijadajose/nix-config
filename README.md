@@ -57,7 +57,35 @@ Este repositorio contiene tres configuraciones diferentes de NixOS para diferent
 - **Permisos específicos** para usuario gaming
 - **Auditoría completa** de cambios
 
+## 🔐 Secure Boot (Lanzaboote)
+
+Esta configuración utiliza **Lanzaboote** para proporcionar soporte de Secure Boot firmado digitalmente. 
+
+> [!IMPORTANT]
+> Si clonas este repositorio en una máquina nueva, **Secure Boot no funcionará de inmediato** ya que las firmas dependen de claves privadas locales que no se suben al repositorio por seguridad.
+
+### 🛠️ Pasos para configurar en una máquina nueva:
+
+1.  **Generar claves locales**:
+    No necesitas instalar `sbctl` permanentemente. Usa una `nix-shell`:
+    ```bash
+    nix-shell -p sbctl --run "sudo sbctl create-keys"
+    ```
+
+2.  **Activar "Setup Mode" en la BIOS**:
+    Reinicia y entra en la BIOS/UEFI. En la sección de Secure Boot, elige **"Reset to Setup Mode"** o **"Clear Secure Boot Keys"**.
+
+3.  **Enrolar tus claves**:
+    De vuelta en NixOS (en Setup Mode), registra tus claves en la placa base:
+    ```bash
+    nix-shell -p sbctl --run "sudo sbctl enroll-keys --microsoft"
+    ```
+
+4.  **Aplicar y Reiniciar**:
+    Aplica la configuración con el script de siempre y reinicia para activar la protección.
+
 ## 🇯🇵 Soporte de Japonés (IME)
+
 
 Esta configuración incluye **soporte completo para escribir en japonés** con Fcitx5 + Mozc (Google Japanese Input).
 
