@@ -8,7 +8,7 @@
       # Mozc - IME japonés moderno y preciso (Google Japanese Input)
       fcitx5-mozc
       # Interfaz gráfica de configuración
-      fcitx5-configtool
+      kdePackages.fcitx5-configtool
       # Tema GTK
       fcitx5-gtk
     ];

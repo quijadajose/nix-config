@@ -14,8 +14,8 @@
     ./modules/packages.nix
     ./modules/ollama.nix
     ./modules/freecad.nix
-    ./modules/virtualbox.nix
-    ./modules/virtualbox-compat.nix
+    # ./modules/virtualbox.nix
+    # ./modules/virtualbox-compat.nix
     ./modules/users/unknown.nix
     ./containers/docker.nix
     ./modules/waydroid.nix
@@ -24,6 +24,6 @@
   system.nixos.label = "Full";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
 

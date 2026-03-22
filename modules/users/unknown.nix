@@ -18,7 +18,8 @@
       git
       unstable.discord
       unstable.telegram-desktop
-      code-cursor
+      unstable.code-cursor
+      unstable.antigravity
       sqlitebrowser
       tree
       unstable.vscode
