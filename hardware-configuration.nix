@@ -14,36 +14,17 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ef54a187-a071-468c-a3b3-174870ba6802";
+    { device = "/dev/disk/by-uuid/b1da4d02-d5db-4afa-904e-5e304fb36d84";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/CC0E-EF10";
+    { device = "/dev/disk/by-uuid/D236-F20C";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/d7880397-f7da-41bc-9cf9-477819e3b213"; }
-    ];
-
-  #swap
-  boot.initrd.systemd.enable = true;
-  services.fstrim.enable = true;
-  powerManagement.enable = true;
-
-  # Solo si querés afinar el swap:
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-  };
-  
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
+  swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
