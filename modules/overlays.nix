@@ -10,12 +10,11 @@ let
 in {
   nixpkgs.config.allowUnfree = true;
 
-  # Exponer canales como `pkgs.unstable` y `pkgs.unstableSmall`
   nixpkgs.overlays = [
     (final: prev: {
       unstable = unstable;
       unstableSmall = unstableSmall;
+      lzbt = (import (fetchTarball "https://github.com/nix-community/lanzaboote/archive/master.tar.gz") { pkgs = prev; }).lzbt;
     })
   ];
 }
-

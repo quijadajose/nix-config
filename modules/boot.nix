@@ -1,15 +1,15 @@
 { pkgs, lib, ... }:
 let
-  # Importamos lanzaboote desde GitHub
-  lanzaboote = import (fetchTarball "https://github.com/nix-community/lanzaboote/archive/v0.4.2.tar.gz");
+  lanzaboote-src = fetchTarball "https://github.com/nix-community/lanzaboote/archive/master.tar.gz";
+  lanzaboote-lib = import lanzaboote-src { inherit pkgs; };
 in
 {
-  imports = [ lanzaboote.nixosModules.lanzaboote ];
+  imports = [ lanzaboote-lib.nixosModules.lanzaboote ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # IMPORTANTE: Desactivamos el systemd-boot normal
   boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.systemd-boot.configurationLimit = 2;
   
   boot.lanzaboote = {
     enable = true;
@@ -18,5 +18,3 @@ in
 
   boot.loader.efi.canTouchEfiVariables = true;
 }
-
-
