@@ -78,4 +78,12 @@
       LogLevelMax = "info";
     };
   };
+
+  # Global security measures for Node.js environments
+  environment.variables = {
+    # Blocks npm and pnpm from executing scripts during installation
+    NPM_CONFIG_IGNORE_SCRIPTS = "true";
+    # Blocks Yarn Berry (v2+) from executing scripts
+    YARN_ENABLE_SCRIPTS = "false";
+  };
 }

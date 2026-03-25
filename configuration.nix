@@ -13,13 +13,14 @@
     ./modules/hardware-graphics.nix
     ./modules/packages.nix
     ./modules/ollama.nix
-    ./modules/freecad.nix
+    #./modules/freecad.nix
     # ./modules/virtualbox.nix
     # ./modules/virtualbox-compat.nix
     ./modules/users/unknown.nix
     ./containers/docker.nix
-    ./modules/waydroid.nix
+    #./modules/waydroid.nix
     ./modules/bluetooth.nix
+    ./modules/security.nix
   ];
   system.nixos.label = "Full";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
