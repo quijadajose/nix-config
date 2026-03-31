@@ -1,0 +1,10 @@
+# /etc/nixos/.sops.yaml
+keys:
+  - &host_ssh ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGqi0EdigEinwOrnckPUImin0Aq3TbOodwjXdYcR7fTr root@nixos
+
+creation_rules:
+  - path_regex: (secrets\.yaml|pc\.conf)$
+    key_groups:
+      - pgp: []
+        age:
+          - *host_ssh

@@ -21,6 +21,7 @@
     #./modules/waydroid.nix
     ./modules/bluetooth.nix
     ./modules/security.nix
+    ./modules/secrets.nix
   ];
   system.nixos.label = "Full";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

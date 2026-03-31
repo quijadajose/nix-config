@@ -84,6 +84,39 @@ Esta configuración utiliza **Lanzaboote** para proporcionar soporte de Secure B
 4.  **Aplicar y Reiniciar**:
     Aplica la configuración con el script de siempre y reinicia para activar la protección.
 
+## 🔐 Gestión de Secretos (sops-nix)
+
+Esta configuración utiliza **sops-nix** para gestionar datos sensibles (DNS over HTTPS, configuraciones de VPN, contraseñas de usuario) de forma cifrada en Git. Los secretos se descifran automáticamente en tiempo de ejecución usando la llave SSH del host (`/etc/ssh/ssh_host_ed25519_key`).
+
+### 🛠️ Comandos de Gestión
+
+Para gestionar los secretos, asegúrate de tener `sops` instalado (puedes usar `nix-shell -p sops`).
+
+#### Editar secretos (YAML)
+Para editar el archivo principal de secretos:
+```bash
+sudo SOPS_AGE_SSH_PRIVATE_KEY_FILE=/etc/ssh/ssh_host_ed25519_key sops /etc/nixos/secrets.yaml
+```
+
+#### Cifrar un archivo nuevo (ej. WireGuard)
+Si tienes un archivo nuevo (como `pc.conf`) y quieres cifrarlo de forma independiente:
+1. Asegúrate de que la regla esté en `.sops.yaml`.
+2. Ejecuta:
+   ```bash
+   sudo sops --encrypt /etc/nixos/tu_archivo.conf > /etc/nixos/tu_archivo.sops.conf
+   ```
+
+### 🔑 Generación de contraseñas de usuario
+Para añadir contraseñas de usuario al archivo de secretos:
+1. Genera el hash: `nix-shell -p mkpasswd --run "mkpasswd -m sha-512"`
+2. Pega el hash resultante en `secrets.yaml` bajo la clave correspondiente.
+
+### ⚠️ Notas de Seguridad
+- **NO subir** archivos `.conf` o `.yaml` en texto plano a GitHub.
+- El archivo `.sops.yaml` indica qué claves públicas pueden cifrar/descifrar.
+- Si reinstalas el sistema, **debes respaldar** `/etc/ssh/ssh_host_ed25519_key` para poder descifrar tus secretos.
+
+
 ## 🇯🇵 Soporte de Japonés (IME)
 
 

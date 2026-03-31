@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   users.users.gaming = {
+    hashedPasswordFile = config.sops.secrets.gaming_password.path;
     shell = pkgs.bash;
     isNormalUser = true;
     description = "Gaming User";
