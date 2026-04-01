@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 let
-  # Importamos sops-nix de forma dinámica para no depender de canales globales
-  sops-nix = import (pkgs.fetchTarball {
+  # Descargamos el código fuente de sops-nix
+  sops-nix-src = builtins.fetchTarball {
     url = "https://github.com/Mic92/sops-nix/archive/master.tar.gz";
-  });
+  };
 in {
   imports = [
-    sops-nix.nixosModules.sops
+    # Importamos el módulo directamente desde la carpeta del código fuente
+    "${sops-nix-src}/modules/sops"
   ];
 
   sops = {

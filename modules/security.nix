@@ -1,7 +1,8 @@
 { config, pkgs, ... }: {
+  systemd.tpm2.enable = false;
   security = {
     apparmor.enable = true;
-    auditd.enable = true;
+    auditd.enable = false;
   };
 
   # AppArmor habilitado para seguridad básica
@@ -9,6 +10,7 @@
 
   networking.firewall = {
     enable = true;
+    checkReversePath = "loose"; # Permite que WireGuard encamine todo el tráfico
     allowedTCPPorts = [ 25565 25575 ];
     allowedUDPPorts = [ 25565 25575 ];
   };

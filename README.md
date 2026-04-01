@@ -111,6 +111,15 @@ Para añadir contraseñas de usuario al archivo de secretos:
 1. Genera el hash: `nix-shell -p mkpasswd --run "mkpasswd -m sha-512"`
 2. Pega el hash resultante en `secrets.yaml` bajo la clave correspondiente.
 
+### 📡 Gestión de la VPN (WireGuard)
+La interfaz se llama `personal` y se gestiona como un servicio de systemd:
+- **Control**: `sudo systemctl [start|stop|restart] wg-quick-personal`
+- **Estado**: `sudo wg show` (comprobar que el `handshake` es menor a 2 min)
+- **Confirmar IP**: `curl ifconfig.me` (debería mostrar la IP del VPS)
+
+> [!TIP]
+> Si la VPN aparece conectada pero no tienes internet después de un cambio de configuración, prueba con `sudo systemctl restart wg-quick-personal`.
+
 ### ⚠️ Notas de Seguridad
 - **NO subir** archivos `.conf` o `.yaml` en texto plano a GitHub.
 - El archivo `.sops.yaml` indica qué claves públicas pueden cifrar/descifrar.
