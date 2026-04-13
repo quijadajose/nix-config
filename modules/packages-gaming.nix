@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    firefox
-    discord
-    telegram-desktop
+    unstable.firefox
+    unstable.discord
+    unstable.telegram-desktop
     # Minecraft Java Edition
     prismlauncher
 

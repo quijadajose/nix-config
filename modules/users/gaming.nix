@@ -30,9 +30,9 @@
       vscode
       unstableSmall.code-cursor
       git
-      firefox
-      discord
-      telegram-desktop
+      unstableSmall.firefox
+      unstableSmall.discord
+      unstableSmall.telegram-desktop
     ];
   };
 }
