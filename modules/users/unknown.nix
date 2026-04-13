@@ -1,11 +1,12 @@
 { pkgs, ... }: {
   users.users.unknown = {
-    shell = pkgs.nushell;
+    shell = pkgs.bash;
     isNormalUser = true;
     description = "unknown";
     extraGroups =
       [ "lp" "lpadmin" "networkmanager" "wheel" "docker" "vboxusers" "audio" ];
     packages = with pkgs; [
+      nushell
       oh-my-posh
       unstable.helix
       pkgs.nixpkgs-fmt
@@ -24,6 +25,7 @@
       tree
       unstable.vscode
       unstable.postman
+      anki
     ];
   };
 }

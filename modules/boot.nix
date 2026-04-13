@@ -2,8 +2,9 @@
   imports = [
     ./boot/lanzaboote.nix
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # i remove this because it's not compatible with virtualbox
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Habilitamos systemd-boot por defecto, Lanzaboote lo desactivará si se incluye
   boot.loader.systemd-boot.enable = lib.mkDefault true;

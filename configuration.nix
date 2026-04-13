@@ -9,19 +9,21 @@
     ./modules/printing.nix
     ./modules/audio.nix
     ./modules/desktop/plasma.nix
-    ./modules/programs.nix
     ./modules/hardware-graphics.nix
     ./modules/packages.nix
+    ./modules/programs.nix
     ./modules/ollama.nix
     #./modules/freecad.nix
-    # ./modules/virtualbox.nix
-    # ./modules/virtualbox-compat.nix
+     ./modules/virtualbox.nix
+     ./modules/virtualbox-compat.nix
     ./modules/users/unknown.nix
     ./containers/docker.nix
     #./modules/waydroid.nix
     ./modules/bluetooth.nix
     ./modules/security.nix
     ./modules/secrets.nix
+    ./modules/spectacle-ocr.nix
+    ./modules/fastfetch.nix
   ];
   system.nixos.label = "Full";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
